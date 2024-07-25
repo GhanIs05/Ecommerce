@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>CartActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+CartActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">eapp</span><span class="s2">.</span><span class="s1">activities</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AppCompatActivity</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">recyclerview</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">DividerItemDecoration</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">recyclerview</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">LinearLayoutManager</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">eapp</span><span class="s2">.</span><span class="s1">R</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">eapp</span><span class="s2">.</span><span class="s1">adapters</span><span class="s2">.</span><span class="s1">CartAdapter</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">eapp</span><span class="s2">.</span><span class="s1">databinding</span><span class="s2">.</span><span class="s1">ActivityCartBinding</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">eapp</span><span class="s2">.</span><span class="s1">databinding</span><span class="s2">.</span><span class="s1">ActivityCategoryBinding</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">eapp</span><span class="s2">.</span><span class="s1">model</span><span class="s2">.</span><span class="s1">Product</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">hishd</span><span class="s2">.</span><span class="s1">tinycart</span><span class="s2">.</span><span class="s1">model</span><span class="s2">.</span><span class="s1">Cart</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">hishd</span><span class="s2">.</span><span class="s1">tinycart</span><span class="s2">.</span><span class="s1">model</span><span class="s2">.</span><span class="s1">Item</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">hishd</span><span class="s2">.</span><span class="s1">tinycart</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">TinyCartHelper</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">ArrayList</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Map</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">CartActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity </span><span class="s2">{</span>
+
+    <span class="s1">ActivityCartBinding binding</span><span class="s2">;</span>
+    <span class="s1">CartAdapter adapter</span><span class="s2">;</span>
+    <span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">Product</span><span class="s2">&gt; </span><span class="s1">products</span><span class="s2">;</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">Bundle savedInstanceState</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">);</span>
+        <span class="s1">binding </span><span class="s2">= </span><span class="s1">ActivityCartBinding</span><span class="s2">.</span><span class="s1">inflate</span><span class="s2">(</span><span class="s1">getLayoutInflater</span><span class="s2">());</span>
+        <span class="s1">setContentView</span><span class="s2">(</span><span class="s1">binding</span><span class="s2">.</span><span class="s1">getRoot</span><span class="s2">());</span>
+
+        <span class="s1">products </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+
+        <span class="s1">Cart cart </span><span class="s2">= </span><span class="s1">TinyCartHelper</span><span class="s2">.</span><span class="s1">getCart</span><span class="s2">();</span>
+
+        <span class="s0">for</span><span class="s2">(</span><span class="s1">Map</span><span class="s2">.</span><span class="s1">Entry</span><span class="s2">&lt;</span><span class="s1">Item</span><span class="s2">, </span><span class="s1">Integer</span><span class="s2">&gt; </span><span class="s1">item </span><span class="s2">: </span><span class="s1">cart</span><span class="s2">.</span><span class="s1">getAllItemsWithQty</span><span class="s2">().</span><span class="s1">entrySet</span><span class="s2">()) {</span>
+            <span class="s1">Product product </span><span class="s2">= (</span><span class="s1">Product</span><span class="s2">) </span><span class="s1">item</span><span class="s2">.</span><span class="s1">getKey</span><span class="s2">();</span>
+            <span class="s0">int </span><span class="s1">quantity </span><span class="s2">= </span><span class="s1">item</span><span class="s2">.</span><span class="s1">getValue</span><span class="s2">();</span>
+            <span class="s1">product</span><span class="s2">.</span><span class="s1">setQuantity</span><span class="s2">(</span><span class="s1">quantity</span><span class="s2">);</span>
+
+            <span class="s1">products</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">product</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">adapter </span><span class="s2">= </span><span class="s0">new </span><span class="s1">CartAdapter</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">products</span><span class="s2">, </span><span class="s0">new </span><span class="s1">CartAdapter</span><span class="s2">.</span><span class="s1">CartListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onQuantityChange</span><span class="s2">() {</span>
+                <span class="s1">binding</span><span class="s2">.</span><span class="s1">subTotal</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s1">String</span><span class="s2">.</span><span class="s1">format</span><span class="s2">(</span><span class="s3">&quot;₹%.2f&quot;</span><span class="s2">,</span><span class="s1">cart</span><span class="s2">.</span><span class="s1">getTotalPrice</span><span class="s2">()));</span>
+
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">LinearLayoutManager layoutManager </span><span class="s2">= </span><span class="s0">new </span><span class="s1">LinearLayoutManager</span><span class="s2">(</span><span class="s0">this</span><span class="s2">);</span>
+        <span class="s1">DividerItemDecoration itemDecoration </span><span class="s2">= </span><span class="s0">new </span><span class="s1">DividerItemDecoration</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">layoutManager</span><span class="s2">.</span><span class="s1">getOrientation</span><span class="s2">());</span>
+        <span class="s1">binding</span><span class="s2">.</span><span class="s1">cartList</span><span class="s2">.</span><span class="s1">setLayoutManager</span><span class="s2">(</span><span class="s1">layoutManager</span><span class="s2">);</span>
+        <span class="s1">binding</span><span class="s2">.</span><span class="s1">cartList</span><span class="s2">.</span><span class="s1">addItemDecoration</span><span class="s2">(</span><span class="s1">itemDecoration</span><span class="s2">);</span>
+        <span class="s1">binding</span><span class="s2">.</span><span class="s1">cartList</span><span class="s2">.</span><span class="s1">setAdapter</span><span class="s2">(</span><span class="s1">adapter</span><span class="s2">);</span>
+
+        <span class="s1">binding</span><span class="s2">.</span><span class="s1">subTotal</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s1">String</span><span class="s2">.</span><span class="s1">format</span><span class="s2">(</span><span class="s3">&quot;₹%.2f&quot;</span><span class="s2">,</span><span class="s1">cart</span><span class="s2">.</span><span class="s1">getTotalPrice</span><span class="s2">()));</span>
+
+        <span class="s1">getSupportActionBar</span><span class="s2">().</span><span class="s1">setDisplayHomeAsUpEnabled</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public boolean </span><span class="s1">onSupportNavigateUp</span><span class="s2">() {</span>
+        <span class="s1">finish</span><span class="s2">();</span>
+        <span class="s0">return super</span><span class="s2">.</span><span class="s1">onSupportNavigateUp</span><span class="s2">();</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

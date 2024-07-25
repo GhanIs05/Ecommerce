@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>AddAddressActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+AddAddressActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">eapp</span><span class="s2">.</span><span class="s1">activities</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">activity</span><span class="s2">.</span><span class="s1">EdgeToEdge</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AppCompatActivity</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">Intent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">View</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Button</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">EditText</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Toast</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">eapp</span><span class="s2">.</span><span class="s1">R</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">AddAddressActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity </span><span class="s2">{</span>
+
+    <span class="s1">EditText etFullName</span><span class="s2">;</span>
+    <span class="s1">EditText etAddressLine1</span><span class="s2">;</span>
+    <span class="s1">EditText etAddressLine2</span><span class="s2">;</span>
+    <span class="s1">EditText etCity</span><span class="s2">;</span>
+    <span class="s1">EditText etState</span><span class="s2">;</span>
+    <span class="s1">EditText etZipCode</span><span class="s2">;</span>
+    <span class="s1">EditText etPhone</span><span class="s2">;</span>
+
+    <span class="s1">Button confirmBtn</span><span class="s2">;</span>
+
+
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">Bundle savedInstanceState</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">);</span>
+        <span class="s1">EdgeToEdge</span><span class="s2">.</span><span class="s1">enable</span><span class="s2">(</span><span class="s0">this</span><span class="s2">);</span>
+        <span class="s1">setContentView</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">activity_add_address</span><span class="s2">);</span>
+        <span class="s1">etFullName </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">et_full_name</span><span class="s2">);</span>
+        <span class="s1">etAddressLine1 </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">et_address_line1</span><span class="s2">);</span>
+        <span class="s1">etAddressLine2 </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">e_address_line2</span><span class="s2">);</span>
+        <span class="s1">etCity </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">e_city</span><span class="s2">);</span>
+        <span class="s1">etState </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">et_state</span><span class="s2">);</span>
+        <span class="s1">etZipCode </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">et_zip_code</span><span class="s2">);</span>
+        <span class="s1">etPhone </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">et_phone</span><span class="s2">);</span>
+
+        <span class="s1">confirmBtn </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">btn_confirm_address</span><span class="s2">);</span>
+
+        <span class="s1">String fullName </span><span class="s2">= </span><span class="s1">etFullName</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">().</span><span class="s1">toString</span><span class="s2">();</span>
+        <span class="s1">String addressLine1 </span><span class="s2">= </span><span class="s1">etAddressLine1</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">().</span><span class="s1">toString</span><span class="s2">();</span>
+        <span class="s1">String addressLine2 </span><span class="s2">= </span><span class="s1">etAddressLine2</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">().</span><span class="s1">toString</span><span class="s2">();</span>
+        <span class="s1">String city </span><span class="s2">= </span><span class="s1">etCity</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">().</span><span class="s1">toString</span><span class="s2">();</span>
+        <span class="s1">String state </span><span class="s2">= </span><span class="s1">etState</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">().</span><span class="s1">toString</span><span class="s2">();</span>
+        <span class="s1">String zipCode </span><span class="s2">= </span><span class="s1">etZipCode</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">().</span><span class="s1">toString</span><span class="s2">();</span>
+        <span class="s1">String phone </span><span class="s2">= </span><span class="s1">etPhone</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">().</span><span class="s1">toString</span><span class="s2">();</span>
+
+        <span class="s1">String message </span><span class="s2">= </span><span class="s3">&quot;Full Name: &quot; </span><span class="s2">+ </span><span class="s1">fullName </span><span class="s2">+</span>
+                <span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">Address Line 1: &quot; </span><span class="s2">+ </span><span class="s1">addressLine1 </span><span class="s2">+</span>
+                <span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">Address Line 2: &quot; </span><span class="s2">+ </span><span class="s1">addressLine2 </span><span class="s2">+</span>
+                <span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">City: &quot; </span><span class="s2">+ </span><span class="s1">city </span><span class="s2">+</span>
+                <span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">State: &quot; </span><span class="s2">+ </span><span class="s1">state </span><span class="s2">+</span>
+                <span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">Zip Code: &quot; </span><span class="s2">+ </span><span class="s1">zipCode </span><span class="s2">+</span>
+                <span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">Phone: &quot; </span><span class="s2">+ </span><span class="s1">phone</span><span class="s2">;</span>
+
+
+
+        <span class="s1">confirmBtn</span><span class="s2">.</span><span class="s1">setOnClickListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">View</span><span class="s2">.</span><span class="s1">OnClickListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onClick</span><span class="s2">(</span><span class="s1">View v</span><span class="s2">) {</span>
+                <span class="s1">startActivity</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Intent</span><span class="s2">(</span><span class="s1">AddAddressActivity</span><span class="s2">.</span><span class="s0">this</span><span class="s2">, </span><span class="s1">MainActivity</span><span class="s2">.</span><span class="s0">class</span><span class="s2">));</span>
+                <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s1">AddAddressActivity</span><span class="s2">.</span><span class="s0">this</span><span class="s2">, </span><span class="s1">message</span><span class="s2">, </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_SHORT</span><span class="s2">).</span><span class="s1">show</span><span class="s2">();</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+
+
+
+    <span class="s2">}</span>
+
+<span class="s2">}</span></pre>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<html>
+<head>
+<title>ProductDetailActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ProductDetailActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">eapp</span><span class="s2">.</span><span class="s1">activities</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">annotation</span><span class="s2">.</span><span class="s1">NonNull</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AppCompatActivity</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">Intent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">text</span><span class="s2">.</span><span class="s1">Html</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">Menu</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">MenuItem</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">View</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">android</span><span class="s2">.</span><span class="s1">volley</span><span class="s2">.</span><span class="s1">Request</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">android</span><span class="s2">.</span><span class="s1">volley</span><span class="s2">.</span><span class="s1">RequestQueue</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">android</span><span class="s2">.</span><span class="s1">volley</span><span class="s2">.</span><span class="s1">Response</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">android</span><span class="s2">.</span><span class="s1">volley</span><span class="s2">.</span><span class="s1">VolleyError</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">android</span><span class="s2">.</span><span class="s1">volley</span><span class="s2">.</span><span class="s1">toolbox</span><span class="s2">.</span><span class="s1">StringRequest</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">android</span><span class="s2">.</span><span class="s1">volley</span><span class="s2">.</span><span class="s1">toolbox</span><span class="s2">.</span><span class="s1">Volley</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">bumptech</span><span class="s2">.</span><span class="s1">glide</span><span class="s2">.</span><span class="s1">Glide</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">eapp</span><span class="s2">.</span><span class="s1">R</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">eapp</span><span class="s2">.</span><span class="s1">databinding</span><span class="s2">.</span><span class="s1">ActivityProductDetailBinding</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">eapp</span><span class="s2">.</span><span class="s1">model</span><span class="s2">.</span><span class="s1">Product</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">eapp</span><span class="s2">.</span><span class="s1">utils</span><span class="s2">.</span><span class="s1">Constants</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">hishd</span><span class="s2">.</span><span class="s1">tinycart</span><span class="s2">.</span><span class="s1">model</span><span class="s2">.</span><span class="s1">Cart</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">hishd</span><span class="s2">.</span><span class="s1">tinycart</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">TinyCartHelper</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">json</span><span class="s2">.</span><span class="s1">JSONException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">json</span><span class="s2">.</span><span class="s1">JSONObject</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Objects</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">ProductDetailActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity </span><span class="s2">{</span>
+
+    <span class="s1">ActivityProductDetailBinding binding</span><span class="s2">;</span>
+    <span class="s1">Product currentProduct</span><span class="s2">;</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">Bundle savedInstanceState</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">);</span>
+        <span class="s1">binding </span><span class="s2">= </span><span class="s1">ActivityProductDetailBinding</span><span class="s2">.</span><span class="s1">inflate</span><span class="s2">(</span><span class="s1">getLayoutInflater</span><span class="s2">());</span>
+        <span class="s1">setContentView</span><span class="s2">(</span><span class="s1">binding</span><span class="s2">.</span><span class="s1">getRoot</span><span class="s2">());</span>
+
+        <span class="s1">String name </span><span class="s2">= </span><span class="s1">getIntent</span><span class="s2">().</span><span class="s1">getStringExtra</span><span class="s2">(</span><span class="s3">&quot;name&quot;</span><span class="s2">);</span>
+        <span class="s1">String image </span><span class="s2">= </span><span class="s1">getIntent</span><span class="s2">().</span><span class="s1">getStringExtra</span><span class="s2">(</span><span class="s3">&quot;image&quot;</span><span class="s2">);</span>
+        <span class="s0">int </span><span class="s1">id </span><span class="s2">= </span><span class="s1">getIntent</span><span class="s2">().</span><span class="s1">getIntExtra</span><span class="s2">(</span><span class="s3">&quot;id&quot;</span><span class="s2">,</span><span class="s4">0</span><span class="s2">);</span>
+        <span class="s0">double </span><span class="s1">price </span><span class="s2">= </span><span class="s1">getIntent</span><span class="s2">().</span><span class="s1">getDoubleExtra</span><span class="s2">(</span><span class="s3">&quot;price&quot;</span><span class="s2">,</span><span class="s4">0</span><span class="s2">);</span>
+
+        <span class="s1">Glide</span><span class="s2">.</span><span class="s1">with</span><span class="s2">(</span><span class="s0">this</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">load</span><span class="s2">(</span><span class="s1">image</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">into</span><span class="s2">(</span><span class="s1">binding</span><span class="s2">.</span><span class="s1">productImage</span><span class="s2">);</span>
+
+        <span class="s1">getProductDetails</span><span class="s2">(</span><span class="s1">id</span><span class="s2">);</span>
+
+        <span class="s1">Objects</span><span class="s2">.</span><span class="s1">requireNonNull</span><span class="s2">(</span><span class="s1">getSupportActionBar</span><span class="s2">()).</span><span class="s1">setTitle</span><span class="s2">(</span><span class="s1">name</span><span class="s2">);</span>
+
+        <span class="s1">getSupportActionBar</span><span class="s2">().</span><span class="s1">setDisplayHomeAsUpEnabled</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+
+        <span class="s1">Cart cart </span><span class="s2">= </span><span class="s1">TinyCartHelper</span><span class="s2">.</span><span class="s1">getCart</span><span class="s2">();</span>
+
+        <span class="s1">binding</span><span class="s2">.</span><span class="s1">addToCartBtn</span><span class="s2">.</span><span class="s1">setOnClickListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">View</span><span class="s2">.</span><span class="s1">OnClickListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onClick</span><span class="s2">(</span><span class="s1">View v</span><span class="s2">) {</span>
+                <span class="s1">cart</span><span class="s2">.</span><span class="s1">addItem</span><span class="s2">(</span><span class="s1">currentProduct</span><span class="s2">, </span><span class="s4">1</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">binding</span><span class="s2">.</span><span class="s1">addAddress</span><span class="s2">.</span><span class="s1">setOnClickListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">View</span><span class="s2">.</span><span class="s1">OnClickListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onClick</span><span class="s2">(</span><span class="s1">View v</span><span class="s2">) {</span>
+                <span class="s1">startActivity</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Intent</span><span class="s2">(</span><span class="s1">ProductDetailActivity</span><span class="s2">.</span><span class="s0">this</span><span class="s2">, </span><span class="s1">AddAddressActivity</span><span class="s2">.</span><span class="s0">class</span><span class="s2">));</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public boolean </span><span class="s1">onCreateOptionsMenu</span><span class="s2">(</span><span class="s1">Menu menu</span><span class="s2">) {</span>
+        <span class="s1">getMenuInflater</span><span class="s2">().</span><span class="s1">inflate</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">menu</span><span class="s2">.</span><span class="s1">cart</span><span class="s2">, </span><span class="s1">menu</span><span class="s2">);</span>
+        <span class="s0">return super</span><span class="s2">.</span><span class="s1">onCreateOptionsMenu</span><span class="s2">(</span><span class="s1">menu</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public boolean </span><span class="s1">onOptionsItemSelected</span><span class="s2">(</span><span class="s1">@NonNull MenuItem item</span><span class="s2">) {</span>
+        <span class="s0">if</span><span class="s2">(</span><span class="s1">item</span><span class="s2">.</span><span class="s1">getItemId</span><span class="s2">() == </span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">cart</span><span class="s2">) {</span>
+            <span class="s1">startActivity</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Intent</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">CartActivity</span><span class="s2">.</span><span class="s0">class</span><span class="s2">) );</span>
+        <span class="s2">}</span>
+        <span class="s0">return super</span><span class="s2">.</span><span class="s1">onOptionsItemSelected</span><span class="s2">(</span><span class="s1">item</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">void  </span><span class="s1">getProductDetails</span><span class="s2">(</span><span class="s0">int </span><span class="s1">id</span><span class="s2">) {</span>
+        <span class="s1">RequestQueue queue </span><span class="s2">= </span><span class="s1">Volley</span><span class="s2">.</span><span class="s1">newRequestQueue</span><span class="s2">(</span><span class="s0">this</span><span class="s2">);</span>
+
+        <span class="s1">String url </span><span class="s2">= </span><span class="s1">Constants</span><span class="s2">.</span><span class="s1">GET_PRODUCT_DETAILS_URL </span><span class="s2">+  </span><span class="s1">id</span><span class="s2">;</span>
+
+        <span class="s1">StringRequest request </span><span class="s2">= </span><span class="s0">new </span><span class="s1">StringRequest</span><span class="s2">(</span><span class="s1">Request</span><span class="s2">.</span><span class="s1">Method</span><span class="s2">.</span><span class="s1">GET</span><span class="s2">, </span><span class="s1">url</span><span class="s2">, </span><span class="s0">new </span><span class="s1">Response</span><span class="s2">.</span><span class="s1">Listener</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt;() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onResponse</span><span class="s2">(</span><span class="s1">String response</span><span class="s2">) {</span>
+                <span class="s0">try </span><span class="s2">{</span>
+                    <span class="s1">JSONObject object </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JSONObject</span><span class="s2">(</span><span class="s1">response</span><span class="s2">);</span>
+                    <span class="s0">if</span><span class="s2">(</span><span class="s1">object</span><span class="s2">.</span><span class="s1">getString</span><span class="s2">(</span><span class="s3">&quot;status&quot;</span><span class="s2">).</span><span class="s1">equals</span><span class="s2">(</span><span class="s3">&quot;success&quot;</span><span class="s2">)) {</span>
+                        <span class="s1">JSONObject product </span><span class="s2">= </span><span class="s1">object</span><span class="s2">.</span><span class="s1">getJSONObject</span><span class="s2">(</span><span class="s3">&quot;product&quot;</span><span class="s2">);</span>
+                        <span class="s1">String description </span><span class="s2">= </span><span class="s1">product</span><span class="s2">.</span><span class="s1">getString</span><span class="s2">(</span><span class="s3">&quot;description&quot;</span><span class="s2">);</span>
+                        <span class="s1">binding</span><span class="s2">.</span><span class="s1">productDescription</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span>
+                                <span class="s1">Html</span><span class="s2">.</span><span class="s1">fromHtml</span><span class="s2">(</span><span class="s1">description</span><span class="s2">)</span>
+                        <span class="s2">);</span>
+
+                        <span class="s1">currentProduct </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Product</span><span class="s2">(</span>
+                                <span class="s1">product</span><span class="s2">.</span><span class="s1">getString</span><span class="s2">(</span><span class="s3">&quot;name&quot;</span><span class="s2">),</span>
+                                <span class="s1">Constants</span><span class="s2">.</span><span class="s1">PRODUCTS_IMAGE_URL </span><span class="s2">+ </span><span class="s1">product</span><span class="s2">.</span><span class="s1">getString</span><span class="s2">(</span><span class="s3">&quot;image&quot;</span><span class="s2">),</span>
+                                <span class="s1">product</span><span class="s2">.</span><span class="s1">getString</span><span class="s2">(</span><span class="s3">&quot;status&quot;</span><span class="s2">),</span>
+                                <span class="s1">product</span><span class="s2">.</span><span class="s1">getDouble</span><span class="s2">(</span><span class="s3">&quot;price&quot;</span><span class="s2">),</span>
+                                <span class="s1">product</span><span class="s2">.</span><span class="s1">getDouble</span><span class="s2">(</span><span class="s3">&quot;price_discount&quot;</span><span class="s2">),</span>
+                                <span class="s1">product</span><span class="s2">.</span><span class="s1">getInt</span><span class="s2">(</span><span class="s3">&quot;stock&quot;</span><span class="s2">),</span>
+                                <span class="s1">product</span><span class="s2">.</span><span class="s1">getInt</span><span class="s2">(</span><span class="s3">&quot;id&quot;</span><span class="s2">)</span>
+                        <span class="s2">);</span>
+                    <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+
+                    <span class="s2">}</span>
+
+
+                <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">Exception e</span><span class="s2">) {</span>
+                    <span class="s1">e</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">}, </span><span class="s0">new </span><span class="s1">Response</span><span class="s2">.</span><span class="s1">ErrorListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onErrorResponse</span><span class="s2">(</span><span class="s1">VolleyError error</span><span class="s2">) {</span>
+
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+        <span class="s1">queue</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">request</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public boolean </span><span class="s1">onSupportNavigateUp</span><span class="s2">() {</span>
+        <span class="s1">finish</span><span class="s2">();</span>
+        <span class="s0">return super</span><span class="s2">.</span><span class="s1">onSupportNavigateUp</span><span class="s2">();</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

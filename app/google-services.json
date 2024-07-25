@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "885354698139",
+    "project_id": "eapp-188e1",
+    "storage_bucket": "eapp-188e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885354698139:android:9bfbd68c9e7d8cc7bf3d3e",
+        "android_client_info": {
+          "package_name": "com.example.eapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_7L9Aon3RMMStV0SZL6DDDj71ZdllU9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
